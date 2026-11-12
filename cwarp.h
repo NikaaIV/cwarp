@@ -31,4 +31,4 @@
     const int cwarp_sp_guard_##name = 0; \
     (void)cwarp_sp_guard_##name
 
-#endif /* CWARP_H */
+#endif
