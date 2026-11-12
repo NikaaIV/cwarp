@@ -23,6 +23,7 @@
  */
 #define skip_to(name) \
     do { \
+        enum { cwarp_sp_order_check_##name = 0 }; \
         goto cwarp_sp_##name; \
     } while (0)
 
