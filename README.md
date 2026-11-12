@@ -1,6 +1,7 @@
 # cwarp.h
 
-**cwarp** is a lightweight, zero-dependency, single-header C library designed to make non-linear control flow readable, explicit, and safe—particularly useful for retry loops and centralized resource cleanup (preventing memory leaks).
+**Cwarp** is a lightweight, zero-dependency, single-header C library designed to make non-linear control flow readable, explicit, and safe.
+Particularly useful for retry loops and centralized resource cleanup (preventing memory leaks).
 
 ## Why cwarp?
 
@@ -15,6 +16,10 @@ In standard C, raw `goto` statements can easily become confusing because the sam
 - **Header-Only:** Just drop `cwarp.h` into your project or install it system-wide.
 - **Namespace Safe:** Automatically prefixes generated labels (`cwarp_cp_` and `cwarp_sp_`) to prevent label collisions.
 - **Memory-Leak Tested:** Verified with Valgrind (`0 errors from 0 contexts`).
+
+## Note
+This library was born mainly as a personal project and to understand how libraries work.
+Usually for professional purposes you might want to use the goto implemented function rather than this library.
 
 ## Installation
 
