@@ -24,7 +24,7 @@
 #define skip_to(name) \
     do { \
         extern const int cwarp_sp_guard_##name; \
-        (void)cwarp_sp_guard_##name; \
+        (void)sizeof(cwarp_sp_guard_##name); \
         goto cwarp_sp_##name; \
     } while (0)
 
@@ -33,4 +33,4 @@
     const int cwarp_sp_guard_##name = 0; \
     (void)cwarp_sp_guard_##name
 
-#endif
+#endif /* CWARP_H */
