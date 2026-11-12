@@ -1,13 +1,34 @@
-// Name of the library
 #ifndef CWARP_H
 #define CWARP_H
 
-// Go back to a certain point
-#define checkpoint(name) checkpoint_##name:
-#define go_back(name)    goto checkpoint_##name
+/* 
+ * Backward jumps:
+ * Declares a dummy guard variable at the checkpoint.
+ * Calling go_back() before checkpoint() causes a compile-time error.
+ */
+#define checkpoint(name) \
+    const int cwarp_cp_guard_##name = 0; \
+    cwarp_cp_##name:;
 
-// Skip ahead to a certain point
-#define skip_to(name)    goto skip_##name
-#define skip_point(name) skip_##name:
+#define go_back(name) \
+    do { \
+        (void)cwarp_cp_guard_##name; \
+        goto cwarp_cp_##name; \
+    } while (0)
 
-#endif
+/* 
+ * Forward jumps:
+ * skip_to() jumps forward to skip_point().
+ * Placing skip_point() before skip_to() causes a redefinition compile error.
+ */
+#define skip_to(name) \
+    do { \
+        goto cwarp_sp_##name; \
+    } while (0)
+
+#define skip_point(name) \
+    cwarp_sp_##name:; \
+    const int cwarp_sp_guard_##name = 0; \
+    (void)cwarp_sp_guard_##name
+
+#endif /* CWARP_H */
