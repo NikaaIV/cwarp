@@ -23,7 +23,8 @@
  */
 #define skip_to(name) \
     do { \
-        enum { cwarp_sp_order_check_##name = 0 }; \
+        extern const int cwarp_sp_guard_##name; \
+        (void)cwarp_sp_guard_##name; \
         goto cwarp_sp_##name; \
     } while (0)
 
